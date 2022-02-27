@@ -1,0 +1,30 @@
+#!/usr/bin/bash
+#taskbar script
+
+TERM="scroll st"
+
+choices=(
+"htop"
+"calcurse"
+"pavucontrol"
+"exit"
+)
+
+sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+
+#echo $sel
+
+case $sel in
+	"htop")
+		$TERM "htop"
+		;;
+	"calcurse")
+		$TERM "calcurse"
+		;;
+	"pavucontrol")
+		pavucontrol && disown
+	 	;;
+	"exit")
+		exit 0
+	 	;;
+esac
