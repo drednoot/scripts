@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+TERM="scroll st"
+
+choices=(
+"on"
+"off"
+"term"
+"back"
+"exit"
+)
+
+sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+
+case $sel in
+	"on")
+		bluetoothctl power on
+		;;
+	"off")
+		bluetoothctl power off
+		;;
+	"term")
+		$TERM "bluetoothctl"
+	 	;;
+	"back")
+		taskbar & exit 0
+	 	;;
+	"exit")
+		exit 0
+	 	;;
+esac

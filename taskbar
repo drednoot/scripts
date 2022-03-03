@@ -7,6 +7,7 @@ choices=(
 "htop"
 "calcurse"
 "pavucontrol"
+"bluetooth"
 "exit"
 )
 
@@ -22,7 +23,10 @@ case $sel in
 		$TERM "calcurse"
 		;;
 	"pavucontrol")
-		pavucontrol && disown
+		pavucontrol & exit 0
+	 	;;
+	"bluetooth")
+		bluetooth & exit 0
 	 	;;
 	"exit")
 		exit 0
