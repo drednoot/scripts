@@ -17,9 +17,11 @@ while true; do
 	case $sel in
 		"htop")
 			$TERM "htop"
+			exit 0
 			;;
 		"calcurse")
 			$TERM "calcurse"
+			exit 0
 			;;
 		"pavucontrol")
 			pavucontrol & exit 0

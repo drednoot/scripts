@@ -3,6 +3,7 @@
 scripts_list=(
 	taskbar
 	bluetooth
+	games
 )
 
 for entry in "${scripts_list[@]}"; do
