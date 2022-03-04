@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# bluetooth script
 
 TERM="scroll st"
 
@@ -10,7 +11,7 @@ choices=(
 "exit"
 )
 
-sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "bluetooth: ")
 
 case $sel in
 	"on")
@@ -23,9 +24,8 @@ case $sel in
 		$TERM "bluetoothctl"
 	 	;;
 	"back")
-		taskbar & exit 0
-	 	;;
-	"exit")
-		exit 0
+		exit 1
 	 	;;
 esac
+
+exit 0

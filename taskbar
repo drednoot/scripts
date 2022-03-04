@@ -11,24 +11,31 @@ choices=(
 "exit"
 )
 
-sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+while true; do
+	sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+	
+	case $sel in
+		"htop")
+			$TERM "htop"
+			;;
+		"calcurse")
+			$TERM "calcurse"
+			;;
+		"pavucontrol")
+			pavucontrol & exit 0
+		 	;;
+		"bluetooth")
+			bluetooth
+			if [[ $? -eq 0 ]]; then
+				exit 0
+			fi
+		 	;;
+		"exit")
+			exit 0
+		 	;;
+	esac
 
-#echo $sel
-
-case $sel in
-	"htop")
-		$TERM "htop"
-		;;
-	"calcurse")
-		$TERM "calcurse"
-		;;
-	"pavucontrol")
-		pavucontrol & exit 0
-	 	;;
-	"bluetooth")
-		bluetooth & exit 0
-	 	;;
-	"exit")
+	if [[ -z $sel ]]; then
 		exit 0
-	 	;;
-esac
+	fi
+done
