@@ -1,4 +1,4 @@
-#!/etc/bin/bash
+#!/usr/bin/bash
 
 choices=(
 "dota"
