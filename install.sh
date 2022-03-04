@@ -4,6 +4,7 @@ scripts_list=(
 	taskbar
 	bluetooth
 	games
+	screenshot
 )
 
 for entry in "${scripts_list[@]}"; do
