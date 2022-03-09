@@ -13,7 +13,7 @@ function select_video {
 	local stringlink=$(awk '{print NR,$1}' "$HOME/.config/ytfs/.temp" | grep "^$num .*")
 	local link=$(echo $stringlink | awk '{print $2}')
 	echo $link
-	mpv --ytdl-format="bestvideo[height<=480]+bestaudio/best[height<=480]" "$link" &  
+	mpv --ytdl-format="bestvideo[height<=1080]+bestaudio/best[height<=1080]" "$link" &  
 }
 
 choices=(
