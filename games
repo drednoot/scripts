@@ -9,6 +9,8 @@ sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "game: ")
 
 case $sel in
 	"dota")
+		export DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1 
+		export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
 		steam "steam://rungameid/570" & exit 0
 		;;
 	"nocturne")

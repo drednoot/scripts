@@ -5,6 +5,9 @@ scripts_list=(
 	bluetooth
 	games
 	screenshot
+	"ytfs.py"
+	ytwl
+	ytuf
 )
 
 for entry in "${scripts_list[@]}"; do

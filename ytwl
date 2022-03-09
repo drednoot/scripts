@@ -1,0 +1,34 @@
+#!/usr/bin/bash
+
+function update_file {
+	firefox "https://www.youtube.com/playlist?list=WL" & 
+	ytuf 
+	link=$(cat $HOME/.config/ytfs/.path)
+	python "/usr/local/bin/ytfs.py" || rofi -e $? 
+}
+
+function select_video {
+	local sel=$(awk '{$1=""; print NR$0}' "$HOME/.config/ytfs/.temp" | rofi -theme-str "#listview {layout: vertical;}" -l 10 -dmenu -p "link: ")
+	local num=$(echo $sel | awk '{print $1}')
+	local stringlink=$(awk '{print NR,$1}' "$HOME/.config/ytfs/.temp" | grep "^$num .*")
+	local link=$(echo $stringlink | awk '{print $2}')
+	echo $link
+	mpv --ytdl-format="bestvideo[height<=480]+bestaudio/best[height<=480]" "$link" &  
+}
+
+choices=(
+"update the file"
+"select the video"
+)
+
+sel=$(printf '%s\n' "${choices[@]}" | rofi -theme-str "#listview {layout: vertical;}" -l 2 -dmenu -p "what to do? ")
+
+case $sel in
+	"update the file")
+		update_file
+		[[ $? -eq 0 ]] && select_video
+		;;
+	"select the video")
+		select_video
+		;;
+esac

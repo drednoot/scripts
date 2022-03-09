@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+mkdir -p $HOME/.config/ytfs
+st ranger --choosefile="$HOME/.config/ytfs/.path"
+[[ $? -eq 1 ]] && echo https://www.youtube.com/playlist?list=WL ; exit 1
+
+exit 0
