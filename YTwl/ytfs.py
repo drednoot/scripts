@@ -3,27 +3,27 @@ import sys
 from os import environ
 
 home = environ['HOME']
-path = home + "/.config/ytfs/.path"
-with open(path) as file:
-    path = file.read()
+path = home + "/.config/ytfs/.page.html"
 
 with open(path) as file:
     soup = bs(file, 'html.parser')
     
-    # format: [ (link, title) ]
+    # format: [ (link, title, author) ]
     titles = []
     
     playlist = soup.find('ytd-playlist-video-list-renderer').find(id="contents")
     for item in playlist.find_all("ytd-playlist-video-renderer"):
-        atag = item.find(id="meta").h3.a
-        link = atag.attrs["href"]
+        meta = item.find(id="meta")
+        atag = meta.h3.a
+        author = meta.find(class_="playlist style-scope ytd-playlist-video-renderer").find("a").get_text()
+        link = "https://youtube.com" + atag.attrs["href"]
         title = atag.get_text()
         # remove all the unnecessary whitespaces
         title = " ".join(title.split())
-        titles.append((link, title))
+        titles.append((link, title, author))
 
 file.close()
 
 with open(home + '/.config/ytfs/.temp', 'w') as file:
-    for link, title in titles:
-        file.write(link + ' ' + title + '\n')
+    for link, title, author in titles:
+        file.write(link + ' ' + title + ' | ' + author + '\n')
