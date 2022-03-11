@@ -1,10 +1,9 @@
 #!/usr/bin/bash
 
 function update_file {
-	firefox "https://www.youtube.com/playlist?list=WL" & 
-	ytuf 
-	link=$(cat $HOME/.config/ytfs/.path)
-	python "/usr/local/bin/ytfs.py" || rofi -e $? 
+	mkdir -p $HOME/.config/ytfs
+	python "/usr/local/bin/YTwl/page_getter.py" || (rofi -e $? ; exit 1)
+	python "/usr/local/bin/YTwl/ytfs.py" || (rofi -e $? ; exit 1) 
 }
 
 function select_video {

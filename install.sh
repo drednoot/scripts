@@ -5,11 +5,10 @@ scripts_list=(
 	bluetooth
 	games
 	screenshot
-	"ytfs.py"
 	ytwl
-	ytuf
+	YTwl
 )
 
 for entry in "${scripts_list[@]}"; do
-	cp -v "./$entry" "/usr/local/bin/"
+	cp -vr "./$entry" "/usr/local/bin/"
 done
