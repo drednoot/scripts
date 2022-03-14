@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 SV="$HOME/Images/scrot/%Y-%m-%d_%H-%M-%S_\$wx\$h.png"
 if [[ $1 == 's' ]]; then
-	scrot "$SV" -s -p
+	scrot "$SV" -s -p -f
 elif [[ $1 == 'f' ]]; then
-	scrot -p -e 'xclip -selection clipboard -target image/png -i $f'
+	scrot "" -p -e 'xclip -selection clipboard -target image/png -i $f'
 elif [[ $1 == 'sf' ]]; then
 	scrot "$SV" -p
 else
-	scrot -s -p -e 'xclip -selection clipboard -target image/png -i $f'
+	scrot "" -s -f -p -e 'xclip -selection clipboard -target image/png -i $f'
 fi
