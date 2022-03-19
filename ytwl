@@ -2,9 +2,13 @@
 
 function update_file {
 	mkdir -p $HOME/.config/ytfs
+	echo "created config folder"
 	mkdir -p $HOME/.cache/ytfs
-	python "/usr/local/bin/YTwl/page_getter.py" || (rofi -e $? ; exit 1)
-	python "/usr/local/bin/YTwl/ytfs.py" || (rofi -e $? ; exit 1) 
+	echo "created cache folder"
+	echo "getting a page"
+	python "/usr/local/bin/YTwl/page_getter.py" || (rofi -e "$? error" ; exit 1)
+	echo "parsing page"
+	python "/usr/local/bin/YTwl/ytfs.py" || (rofi -e "$? error" ; exit 1) 
 }
 
 function select_video {

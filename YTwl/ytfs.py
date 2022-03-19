@@ -6,6 +6,7 @@ home = environ['HOME']
 path = home + "/.cache/ytfs/page.html"
 
 with open(path) as file:
+    print(path)
     soup = bs(file, 'html.parser')
     
     # format: [ (link, title, author) ]

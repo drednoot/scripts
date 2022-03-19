@@ -2,7 +2,7 @@ from selenium import webdriver
 from http.cookiejar import FileCookieJar
 from os import environ
 
-page = environ['HOME'] + ".cache/ytfs/page.html"
+page = environ['HOME'] + "/.cache/ytfs/page.html"
 prof_file = environ['HOME'] + "/.config/ytfs/profile.txt"
 
 def main():
@@ -12,7 +12,7 @@ def main():
 
     try:
         fireFoxOptions = webdriver.firefox.options.Options()
-        fireFoxOptions.headless = True
+        # fireFoxOptions.headless = True
         fireFoxProfile = webdriver.FirefoxProfile(prof)
         fireFoxOptions.profile = fireFoxProfile
         brower = webdriver.Firefox(options=fireFoxOptions)
