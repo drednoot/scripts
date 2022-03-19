@@ -2,14 +2,15 @@
 
 function update_file {
 	mkdir -p $HOME/.config/ytfs
+	mkdir -p $HOME/.cache/ytfs
 	python "/usr/local/bin/YTwl/page_getter.py" || (rofi -e $? ; exit 1)
 	python "/usr/local/bin/YTwl/ytfs.py" || (rofi -e $? ; exit 1) 
 }
 
 function select_video {
-	local sel=$(awk '{$1=""; print NR$0}' "$HOME/.config/ytfs/.temp" | rofi -theme-str "#listview {layout: vertical;}" -l 10 -dmenu -p "link: ")
+	local sel=$(awk '{$1=""; print NR$0}' "$HOME/.cache/ytfs/temp" | rofi -theme-str "#listview {layout: vertical;}" -l 15 -dmenu -p "link")
 	local num=$(echo $sel | awk '{print $1}')
-	local stringlink=$(awk '{print NR,$1}' "$HOME/.config/ytfs/.temp" | grep "^$num .*")
+	local stringlink=$(awk '{print NR,$1}' "$HOME/.cache/ytfs/temp" | grep "^$num .*")
 	local link=$(echo $stringlink | awk '{print $2}')
 	echo $stringlink
 	mpv --ytdl-format="bestvideo[height<=1080]+bestaudio/best[height<=1080]" "$link" & disown
@@ -20,7 +21,7 @@ choices=(
 "select the video"
 )
 
-sel=$(printf '%s\n' "${choices[@]}" | rofi -theme-str "#listview {layout: vertical;}" -l 2 -dmenu -p "what to do? ")
+sel=$(printf '%s\n' "${choices[@]}" | rofi -theme-str "#listview {layout: vertical;}" -l 2 -dmenu -p "what to do?")
 
 case $sel in
 	"update the file")

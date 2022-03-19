@@ -3,7 +3,7 @@ import sys
 from os import environ
 
 home = environ['HOME']
-path = home + "/.config/ytfs/.page.html"
+path = home + "/.cache/ytfs/page.html"
 
 with open(path) as file:
     soup = bs(file, 'html.parser')
@@ -24,6 +24,6 @@ with open(path) as file:
 
 file.close()
 
-with open(home + '/.config/ytfs/.temp', 'w') as file:
+with open(home + '/.cache/ytfs/temp', 'w') as file:
     for link, title, author in titles:
         file.write(link + ' ' + title + ' | ' + author + '\n')

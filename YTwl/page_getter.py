@@ -2,9 +2,8 @@ from selenium import webdriver
 from http.cookiejar import FileCookieJar
 from os import environ
 
-homecfg = environ['HOME'] + "/.config/ytfs/"
-page = homecfg + ".page.html"
-prof_file = homecfg + "profile.txt"
+page = environ['HOME'] + ".cache/ytfs/page.html"
+prof_file = environ['HOME'] + "/.config/ytfs/profile.txt"
 
 def main():
     prof = None
