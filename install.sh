@@ -7,6 +7,7 @@ scripts_list=(
 	screenshot
 	ytwl
 	YTwl
+	batch-dl
 )
 
 for entry in "${scripts_list[@]}"; do

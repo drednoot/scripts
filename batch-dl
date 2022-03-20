@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "$(pwd)"
+[ -z $1 ] && exit 1 
+let n=0
+
+while IFS="" read -r p || [ -n "$p" ]
+do
+	echo $p
+	echo $n
+	yt-dlp --no-part --restrict-filenames --referer "https://aniqit.com/" -o "$n.%(ext)s" -P "$(pwd)" "$p"
+	n=$(expr $n + 1)
+done < $1
