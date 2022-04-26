@@ -12,5 +12,5 @@ scripts_list=(
 )
 
 for entry in "${scripts_list[@]}"; do
-	cp -vr "./$entry" "/usr/local/bin/"
+	sudo cp -vr "./$entry" "/usr/local/bin/"
 done
