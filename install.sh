@@ -8,6 +8,7 @@ scripts_list=(
 	ytwl
 	YTwl
 	batch-dl
+	rbvol
 )
 
 for entry in "${scripts_list[@]}"; do

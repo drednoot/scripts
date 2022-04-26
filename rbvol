@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+rhythmbox-client --set-volume $(echo $(rhythmbox-client --print-volume | awk '{print substr($4, 1, length($2)-1)}') + $1 | bc)
