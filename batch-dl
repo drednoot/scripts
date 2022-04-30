@@ -1,13 +1,15 @@
 #!/bin/bash
 
-echo "$(pwd)"
 [ -z $1 ] && exit 1 
-let n=0
+let n=1
+lz=$(echo "$(cat $1 | wc -l) / 10 + 1" | bc)
+printf "%0${lz}d"
 
 while IFS="" read -r p || [ -n "$p" ]
 do
+	lzn=$(printf "%0${lz}d" "$n")
+	echo $lzn
 	echo $p
-	echo $n
-	yt-dlp --no-part --restrict-filenames --referer "https://aniqit.com/" -o "$n.%(ext)s" -P "$(pwd)" "$p"
+	yt-dlp --no-part --restrict-filenames --referer "https://aniqit.com/" -o "$lzn.%(ext)s" -P "$(pwd)" "$p"
 	n=$(expr $n + 1)
 done < $1
