@@ -1,17 +1,9 @@
-#!/usr/bin/bash
+#!/bin/sh
 # bluetooth script
 
-TERM="scroll st"
+TERM="st"
 
-choices=(
-"on"
-"off"
-"term"
-"back"
-"exit"
-)
-
-sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "bluetooth: ")
+sel=$(echo "on\noff\nterm\nback\nexit" | rofi -dmenu -p "bluetooth")
 
 case $sel in
 	"on")
