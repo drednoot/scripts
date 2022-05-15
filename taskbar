@@ -8,6 +8,7 @@ choices=(
 "calcurse"
 "pavucontrol"
 "bluetooth"
+"keymap-fix"
 "exit"
 )
 
@@ -32,6 +33,10 @@ while true; do
 				exit 0
 			fi
 		 	;;
+		"keymap-fix")
+			setxkbmap -layout us,ru -option grp:alt_shift_toggle
+			exit 0
+			;;
 		"exit")
 			exit 0
 		 	;;
