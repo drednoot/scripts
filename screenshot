@@ -1,5 +1,6 @@
 #!/usr/bin/bash
-SV="$HOME/Images/scrot/%Y-%m-%d_%H-%M-%S_\$wx\$h.png"
+SV="$HOME/.cache/scrot/%Y-%m-%d_%H-%M-%S_\$wx\$h.png"
+mkdir -p "$HOME/.cache/scrot"
 if [[ $1 == 's' ]]; then
 	scrot "$SV" -s -p -f
 elif [[ $1 == 'f' ]]; then
