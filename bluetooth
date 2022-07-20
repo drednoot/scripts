@@ -8,9 +8,11 @@ sel=$(echo "on\noff\nterm\nback\nexit" | rofi -dmenu -p "bluetooth")
 case $sel in
 	"on")
 		bluetoothctl power on
+		xset -dpms
 		;;
 	"off")
 		bluetoothctl power off
+		xset +dpms
 		;;
 	"term")
 		$TERM "bluetoothctl"
