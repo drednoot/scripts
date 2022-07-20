@@ -3,7 +3,7 @@
 [ -z $1 ] && exit 1 
 n=1
 # lz=$(echo "$(cat $1 | wc -l) / 10 + 1" | bc)
-echo "l($(cat $1 | wc -l)) / l(10)" | bc -l | awk '!$0{print;next}{printf "%s\t%d\n",$0,($0%int($0))?int($0)+(($0>0)?1:0):$0}' | awk '{print $2}'
+echo "l($(cat $1 | wc -l)+1) / l(10)" | bc -l | awk '!$0{print;next}{printf "%s\t%d\n",$0,($0%int($0))?int($0)+(($0>0)?1:0):$0}' | awk '{print $2}'
 printf "%0${lz}d"
 
 while IFS="" read -r p || [ -n "$p" ]
