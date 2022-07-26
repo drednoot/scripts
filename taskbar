@@ -1,22 +1,19 @@
-#!/usr/bin/bash
+#!/bin/sh
 #taskbar script
 
 TERM="st"
 tear=$(xrandr --prop | grep TearFree | grep -E '(on|off)' | awk '{print $2}')
 tearn=$( [ $tear = "on" ] && echo off || echo on)
+bt=$(bluetoothctl show | grep Powered | awk '{print $2}')
+btn=$( [ $bt = "yes" ] && echo no || echo yes)
+btc=$( [ $btn = "yes" ] && echo on || echo off)
 
-choices=(
-"htop"
-"calcurse"
-"pavucontrol"
-"bluetooth"
-"tearfree $tearn"
-"keymap-fix"
-"exit"
-)
+choices="
+htop\ncalcurse\npavucontrol\nbluetooth $btc\ntearfree $tearn\nkeymap-fix\nexit
+"
 
 while true; do
-	sel=$(printf '%s\n' "${choices[@]}" | rofi -dmenu -p "taskbar: ")
+	sel=$(echo $choices | rofi -dmenu -p "taskbar: ")
 	
 	case $sel in
 		"htop")
@@ -30,13 +27,11 @@ while true; do
 		"pavucontrol")
 			pavucontrol & exit 0
 		 	;;
-		"bluetooth")
-			bluetooth
-			if [[ $? -eq 0 ]]; then
-				exit 0
-			fi
+		"bluetooth $btc")
+			bluetoothctl power $btc
+			exit 0
 		 	;;
-		"tearing $tearn")
+		"tearfree $tearn")
 			xrandr --output HDMI-A-0 --set TearFree $tearn
 			exit 0
 			;;		
@@ -49,7 +44,5 @@ while true; do
 		 	;;
 	esac
 
-	if [[ -z $sel ]]; then
-		exit 0
-	fi
+	[ -z $sel ] && exit 0
 done
