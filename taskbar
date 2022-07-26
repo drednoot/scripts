@@ -1,13 +1,16 @@
 #!/usr/bin/bash
 #taskbar script
 
-TERM="scroll st"
+TERM="st"
+tear=$(xrandr --prop | grep TearFree | grep -E '(on|off)' | awk '{print $2}')
+tearn=$( [ $tear = "on" ] && echo off || echo on)
 
 choices=(
 "htop"
 "calcurse"
 "pavucontrol"
 "bluetooth"
+"tearing $tearn"
 "keymap-fix"
 "exit"
 )
@@ -33,6 +36,10 @@ while true; do
 				exit 0
 			fi
 		 	;;
+		"tearing $tearn")
+			xrandr --output HDMI-A-0 --set TearFree $tearn
+			exit 0
+			;;		
 		"keymap-fix")
 			setxkbmap -layout us,ru -option grp:alt_shift_toggle
 			exit 0
