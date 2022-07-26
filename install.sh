@@ -2,9 +2,6 @@
 
 scripts_list=(
 	taskbar
-	bluetooth
-	games
-	screenshot
 	ytwl
 	YTwl
 	batch-dl
