@@ -10,7 +10,7 @@ choices=(
 "calcurse"
 "pavucontrol"
 "bluetooth"
-"tearing $tearn"
+"TearFree $tearn"
 "keymap-fix"
 "exit"
 )
