@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ $(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}') = "no" ] && (pactl set-source-mute @DEFAULT_SOURCE@ on && play /usr/local/bin/sfx/mute.mp3 -q) || (pactl set-source-mute @DEFAULT_SOURCE@ off && play /usr/local/bin/sfx/unmute.mp3 -q)

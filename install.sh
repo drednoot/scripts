@@ -6,6 +6,8 @@ scripts_list=(
 	YTwl
 	batch-dl
 	rbvol
+	sfx
+	mute
 )
 
 for entry in "${scripts_list[@]}"; do
