@@ -29,6 +29,7 @@ while true; do
 		 	;;
 		"bluetooth $btc")
 			bluetoothctl power $btc
+			[ $btc = "on" ] && xset -dpms || xset +dpms
 			exit 0
 		 	;;
 		"tearfree $tearn")
