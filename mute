@@ -1,3 +1,46 @@
 #!/bin/sh
 
-[ $(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}') = "no" ] && (pactl set-source-mute @DEFAULT_SOURCE@ on && play /usr/local/bin/sfx/mute.mp3 -q) || (pactl set-source-mute @DEFAULT_SOURCE@ off && play /usr/local/bin/sfx/unmute.mp3 -q)
+srcm=$(pactl get-source-mute @DEFAULT_SOURCE@ | awk '{print $2}')
+snkm=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+
+mute ()
+{
+	pactl set-source-mute @DEFAULT_SOURCE@ on
+}
+mute_sfx ()
+{
+	play /usr/local/bin/sfx/mute.mp3 -q
+}
+unmute ()
+{
+	pactl set-source-mute @DEFAULT_SOURCE@ off
+}
+unmute_sfx()
+{
+	play /usr/local/bin/sfx/unmute.mp3 -q
+}
+deafen ()
+{
+	pactl set-sink-mute @DEFAULT_SINK@ on
+}
+deafen_sfx ()
+{
+	play /usr/local/bin/sfx/deafen.mp3 -q
+}
+undeafen ()
+{
+	pactl set-sink-mute @DEFAULT_SINK@ off
+}
+undeafen_sfx ()
+{
+	play /usr/local/bin/sfx/undeafen.mp3 -q
+}
+
+case "$1" in
+	"mute") [ $snkm = "yes" ] && (unmute && undeafen && unmute_sfx) || ( [ $srcm = "no" ] && (mute && mute_sfx) || (unmute && unmute_sfx) )
+	;;
+	"deaf") [ $snkm = "yes" ] && (undeafen && unmute && undeafen_sfx) || (mute && deafen_sfx && deafen)
+	;;
+	*) exit 1
+	;;
+esac
