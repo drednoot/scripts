@@ -8,6 +8,8 @@ scripts_list=(
 	rbvol
 	sfx
 	mute
+	musicdata
+	rofioff
 )
 
 for entry in "${scripts_list[@]}"; do

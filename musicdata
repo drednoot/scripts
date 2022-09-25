@@ -1,0 +1,10 @@
+#!/bin/sh
+
+combine () {
+	title=$(playerctl metadata | grep -E "(title|artist)" | awk '{$1=$2=""; print $0}' | sed -e "s/^\s*//g")
+	artist=$(echo "$title" | sed '2q;d')
+	title=$(echo "$title" | sed '1q;d')
+	[ -z "$artist" ] && echo "$title" || echo "$artist - $title"
+}
+
+[ "$(playerctl status)" = "Playing" ] && combine

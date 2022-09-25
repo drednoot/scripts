@@ -1,0 +1,30 @@
+#!/bin/sh
+
+choices="
+power off\nreboot\nclose dwm\nexit
+"
+
+while true; do
+	sel=$(echo $choices | rofi -dmenu -p "taskbar: ")
+	
+	case $sel in
+		"power off")
+			loginctl poweroff
+			exit 0
+			;;
+		"reboot")
+			loginctl reboot
+			exit 0
+			;;
+		"close dwm")
+			killall dwm
+			exit 0
+		 	;;
+		"exit")
+			exit 0
+		 	;;
+	esac
+
+	[ -z $sel ] && exit 0
+done
+
