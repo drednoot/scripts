@@ -9,19 +9,19 @@ while true; do
 	
 	case $sel in
 		"power off")
-			loginctl poweroff
+			systemctl poweroff
 			exit 0
 			;;
 		"reboot")
-			loginctl reboot
+			systemctl reboot
 			exit 0
 			;;
 		"sleep")
-			loginctl suspend
+			systemctl suspend
 			exit 0
 		 	;;
-		"close dwm")
-			killall dwm
+		"close hyprland")
+			hyprctl kill
 			exit 0
 		 	;;
 		"exit")
